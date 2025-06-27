@@ -1,4 +1,4 @@
-import Card from "../components/Card";
+import Card from "../components/cards/Card";
 
 import DepositIcon from "../assets/icons/deposit.svg";
 import TruckIcon from "../assets/icons/truck.svg";

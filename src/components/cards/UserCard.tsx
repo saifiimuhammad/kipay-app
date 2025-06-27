@@ -1,14 +1,8 @@
-import arrowIcon from "../assets/icons/arrow-side.svg";
+import arrowIcon from "../../assets/icons/arrow-side.svg";
 
-interface UserCardProps {
-  name: string;
-  phone: string;
-  email: string;
-  status: "Verified" | "Pending" | "Incomplete";
-  imageUrl?: string;
-}
+import type { User } from "../../seeders/users";
 
-const UserCard: React.FC<UserCardProps> = ({
+const UserCard: React.FC<User> = ({
   name,
   phone,
   email,

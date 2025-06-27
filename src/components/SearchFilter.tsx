@@ -6,6 +6,7 @@ interface SearchFilterProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   onFilter: (filter: string) => void;
+  filterValues: string[];
 }
 
 const SearchFilter: React.FC<SearchFilterProps> = ({
@@ -13,6 +14,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
   onChange,
   placeholder = "Search by name, email or company",
   onFilter,
+  filterValues,
 }) => {
   const [activeFilter, setActiveFilter] = useState<string | null>("All");
 
@@ -47,36 +49,20 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
         >
           All <ChevronDown size={18} />
         </button>
-        <button
-          onClick={() => handleFilterClick("Status")}
-          className={`px-4 py-2 rounded-md ${
-            activeFilter === "Status"
-              ? "bg-white text-black"
-              : "bg-[var(--bg)] border-2 border-[var(--border)] text-[var(--text-3)]"
-          } hover:bg-opacity-90`}
-        >
-          Status
-        </button>
-        <button
-          onClick={() => handleFilterClick("Type")}
-          className={`px-4 py-2 rounded ${
-            activeFilter === "Type"
-              ? "bg-white text-black"
-              : "bg-[var(--bg)] border-2 border-[var(--border)] text-[var(--text-3)]"
-          } hover:bg-opacity-90`}
-        >
-          Type
-        </button>
-        <button
-          onClick={() => handleFilterClick("Date joined")}
-          className={`px-4 py-2 rounded ${
-            activeFilter === "Date joined"
-              ? "bg-white text-black"
-              : "bg-[var(--bg)] border-2 border-[var(--border)] text-[var(--text-3)]"
-          } hover:bg-opacity-90`}
-        >
-          Date joined
-        </button>
+
+        {filterValues.map((value) => (
+          <button
+            key={value}
+            onClick={() => handleFilterClick(value)}
+            className={`px-4 py-2 rounded ${
+              activeFilter === value
+                ? "bg-white text-black"
+                : "bg-[var(--bg)] border-2 border-[var(--border)] text-[var(--text-3)]"
+            } hover:bg-opacity-90`}
+          >
+            {value}
+          </button>
+        ))}
       </div>
     </div>
   );

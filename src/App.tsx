@@ -6,11 +6,11 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import { useState } from "react";
 import UserManagement from "./pages/UserManagement";
-
-
+import AllTransactions from "./pages/transactions/AllTransactions";
 
 // Line in the graph
-{/* <div className="w-full h-10 bg-black flex items-center justify-center">
+{
+  /* <div className="w-full h-10 bg-black flex items-center justify-center">
         <svg width="200" height="20" className="relative">
           <polyline
             points="10,10 80,10 90,0 190,0"
@@ -19,7 +19,8 @@ import UserManagement from "./pages/UserManagement";
             fill="none"
           />
         </svg>
-      </div> */}
+      </div> */
+}
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -36,6 +37,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/users" element={<UserManagement />} />
+          <Route path="/transactions/all" element={<AllTransactions />} />
         </Routes>
       </Router>
     </div>

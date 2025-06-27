@@ -2,10 +2,12 @@ import { useState, type ChangeEvent } from "react";
 import { PlusIcon } from "lucide-react";
 
 import SearchFilter from "../components/SearchFilter";
-import UserCard from "../components/UserCard";
+import UserCard from "../components/cards/UserCard";
 
 import { users } from "../seeders/users";
 import { corporates } from "../seeders/corporates";
+
+const filterValues = ["Status", "Type", "Date joined"];
 
 const UserManagement = () => {
   const [isIndividual, setIsIndividual] = useState(true);
@@ -55,6 +57,7 @@ const UserManagement = () => {
         value={searchValue}
         onChange={handleOnSearch}
         onFilter={handleSearchFilter}
+        filterValues={filterValues}
       />
 
       {/* Users lists */}

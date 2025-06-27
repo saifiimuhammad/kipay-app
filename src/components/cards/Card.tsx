@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
-import ArrowDownIcon from "../assets/icons/arrow-down.svg";
-import ArrowUpIcon from "../assets/icons/arrow-up.svg";
+import ArrowDownIcon from "../../assets/icons/arrow-down.svg";
+import ArrowUpIcon from "../../assets/icons/arrow-up.svg";
 
 type CardType = {
   icon: ReactNode;
@@ -30,8 +30,8 @@ const Card = ({ icon, title, value, rate }: CardType) => {
       </h1>
 
       <div className="card-details flex items-center justify-start gap-x-2 mt-1 flex-wrap">
-        {isPositive && <img src={ArrowUpIcon} />}
-        {isNegative && <img src={ArrowDownIcon} />}
+        {isPositive && <img src={ArrowUpIcon} alt="arrow_up_icon" />}
+        {isNegative && <img src={ArrowDownIcon} alt="arrow_down_icon" />}
         <span className="text-[var(--text-3)] text-[.75rem]">
           {Math.abs(rateValue)}%
         </span>
