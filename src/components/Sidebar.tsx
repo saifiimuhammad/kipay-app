@@ -38,12 +38,12 @@ const Sidebar = ({
       <div
         className={`lightbox absolute top-0 left-0 ${
           isSidebarOpen ? "w-full" : "w-0"
-        } h-screen bg-black opacity-70`}
+        } h-screen bg-black opacity-70 z-99`}
       ></div>
       <aside
         className={`sidebar absolute top-0 left-0 ${
           isSidebarOpen ? "w-[60%]" : "w-0"
-        } h-screen bg-[var(--bg)] transition-all duration-100`}
+        } h-screen bg-[var(--bg)] transition-all duration-100 z-99`}
       >
         <div
           className={`sidebar-header h-24 w-full border-b border-[var(--border)] ${
@@ -62,7 +62,7 @@ const Sidebar = ({
         >
           <ul className="nav flex items-start justify-center flex-col gap-y-6">
             <NavItem
-              link="/dashboard"
+              link="/"
               title="Dashboard"
               icon={<img src={DashboardIcon} />}
               activeIcon={<img src={DashboardFilledIcon} />}
