@@ -21,6 +21,10 @@ const Navbar = ({
         return "User Management";
       case "/transactions/all":
         return "All Transactions";
+      case "/transactions/pending-validation":
+        return "Pending validation";
+      case "/transactions/scheduled-payments":
+        return "Scheduled payments";
       default:
         return "Not Found";
     }

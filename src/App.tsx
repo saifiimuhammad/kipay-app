@@ -7,6 +7,8 @@ import Dashboard from "./pages/Dashboard";
 import { useState } from "react";
 import UserManagement from "./pages/UserManagement";
 import AllTransactions from "./pages/transactions/AllTransactions";
+import PendingValidations from "./pages/transactions/PendingValidations";
+import ScheduledPayments from "./pages/transactions/ScheduledPayments";
 
 // Line in the graph
 {
@@ -37,7 +39,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/users" element={<UserManagement />} />
-          <Route path="/transactions/all" element={<AllTransactions />} />
+          <Route path="/transactions">
+            <Route path="all" element={<AllTransactions />} />
+            <Route path="pending-validation" element={<PendingValidations />} />
+            <Route path="scheduled-payments" element={<ScheduledPayments />} />
+          </Route>
         </Routes>
       </Router>
     </div>

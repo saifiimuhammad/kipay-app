@@ -94,7 +94,7 @@ const Sidebar = ({
                   icon: <img src={AllTransactionsIcon} />,
                 },
                 {
-                  link: "/transactions/pending",
+                  link: "/transactions/pending-validation",
                   title: "Pending validation",
                   icon: <img src={PendingVerifIcon} />,
                 },

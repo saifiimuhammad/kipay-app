@@ -222,3 +222,47 @@ export const transactions: Transaction[] = [
     status: "Completed",
   },
 ];
+
+export const pendingValidations: Transaction[] = transactions.map((txn) => ({
+  ...txn,
+  status: "Pending",
+}));
+
+type ScheduledPaymentsType = {
+  name: string;
+  amount: number;
+  scheduledDate: string;
+  status: "Completed" | "Pending" | "Rejected";
+  approvers: string;
+};
+
+export const scheduledPayments: ScheduledPaymentsType[] = [
+  {
+    name: "Samuel Johnson (Corp)",
+    amount: 12500,
+    scheduledDate: "30-04-25",
+    status: "Pending",
+    approvers: "2 of 3 Required",
+  },
+  {
+    name: "Samuel Johnson (Corp)",
+    amount: 12500,
+    scheduledDate: "30-04-25",
+    status: "Completed",
+    approvers: "2 of 3 Required",
+  },
+  {
+    name: "Samuel Johnson (Corp)",
+    amount: 12500,
+    scheduledDate: "30-04-25",
+    status: "Pending",
+    approvers: "2 of 3 Required",
+  },
+  {
+    name: "Samuel Johnson (Corp)",
+    amount: 12500,
+    scheduledDate: "30-04-25",
+    status: "Completed",
+    approvers: "2 of 3 Required",
+  },
+];

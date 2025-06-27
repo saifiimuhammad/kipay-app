@@ -28,9 +28,9 @@ const AllTransactions = () => {
         filterValues={filterValues}
       />
 
-      {/* Users lists */}
+      {/* Transaction lists */}
       <div
-        className={`users-list w-full h-screen overflow-scroll flex flex-col gap-y-2`}
+        className={`transaction-list w-full h-screen overflow-scroll flex flex-col gap-y-2`}
       >
         {transactions.map((value) => (
           <TransactionCard
