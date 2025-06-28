@@ -20,6 +20,7 @@ const UserManagement = () => {
 
   const handleSearchFilter = (toggledFilter: string) => {
     setFilterValue(toggledFilter);
+    console.log(filterValue);
   };
 
   const handleToggle = () => {

@@ -1,10 +1,6 @@
 import { useState, type ChangeEvent } from "react";
 
 import SearchFilter from "../../components/SearchFilter";
-import TransactionCard from "../../components/cards/TransactionCard";
-import { transactions } from "../../seeders/transactions";
-
-import arrowIcon from "../../assets/icons/arrow-side.svg";
 
 import { ledgerList, type LedgerEntry } from "../../seeders/users";
 

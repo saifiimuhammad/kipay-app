@@ -1,5 +1,5 @@
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
-import { ReactNode, useState } from "react";
+import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import { type ReactNode, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
 interface FormFieldProps {
@@ -16,7 +16,7 @@ export default function FormField({
   registration,
   error,
   icon,
-}: FormFieldProps) {
+}: Readonly<FormFieldProps>) {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
 
