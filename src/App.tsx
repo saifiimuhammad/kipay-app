@@ -1,56 +1,60 @@
+import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Dashboard from "./pages/Dashboard";
-import { useState } from "react";
-import UserManagement from "./pages/UserManagement";
-import AllTransactions from "./pages/transactions/AllTransactions";
-import PendingValidations from "./pages/transactions/PendingValidations";
-import ScheduledPayments from "./pages/transactions/ScheduledPayments";
-import CounterpartyLedger from "./pages/transactions/CounterpartyLedger";
+import Loader from "./components/loaders/Loader";
 
-// Line in the graph
-{
-  /* <div className="w-full h-10 bg-black flex items-center justify-center">
-        <svg width="200" height="20" className="relative">
-          <polyline
-            points="10,10 80,10 90,0 190,0"
-            stroke="gray"
-            strokeWidth="2"
-            fill="none"
-          />
-        </svg>
-      </div> */
-}
+const Login = lazy(() => import("./pages/Login"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const UserManagement = lazy(() => import("./pages/UserManagement"));
+const AllTransactions = lazy(
+  () => import("./pages/transactions/AllTransactions")
+);
+const PendingValidations = lazy(
+  () => import("./pages/transactions/PendingValidations")
+);
+const ScheduledPayments = lazy(
+  () => import("./pages/transactions/ScheduledPayments")
+);
+const CounterpartyLedger = lazy(
+  () => import("./pages/transactions/CounterpartyLedger")
+);
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   return (
     <div className="text-[var(--text-2)]">
-      {/* <Login /> */}
+      <Suspense fallback={<Loader />}>
+        <Router>
+          <Navbar setIsSidebarOpen={setIsSidebarOpen} />
+          <Sidebar
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/users" element={<UserManagement />} />
+            <Route path="/transactions">
+              <Route path="all" element={<AllTransactions />} />
+              <Route
+                path="pending-validation"
+                element={<PendingValidations />}
+              />
+              <Route
+                path="scheduled-payments"
+                element={<ScheduledPayments />}
+              />
+              <Route
+                path="counterparty-ledger"
+                element={<CounterpartyLedger />}
+              />
+            </Route>
 
-      <Router>
-        <Navbar setIsSidebarOpen={setIsSidebarOpen} />
-        <Sidebar
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
-        />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/users" element={<UserManagement />} />
-          <Route path="/transactions">
-            <Route path="all" element={<AllTransactions />} />
-            <Route path="pending-validation" element={<PendingValidations />} />
-            <Route path="scheduled-payments" element={<ScheduledPayments />} />
-            <Route
-              path="counterparty-ledger"
-              element={<CounterpartyLedger />}
-            />
-          </Route>
-        </Routes>
-      </Router>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      </Suspense>
     </div>
   );
 };
