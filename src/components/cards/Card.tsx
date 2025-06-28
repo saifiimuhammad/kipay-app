@@ -21,7 +21,7 @@ const Card = ({ icon, title, value, rate }: CardType) => {
         {icon}
       </div>
 
-      <p className="card-title text-[var(--text-2)] text-[.7rem] tracking-wider mt-1">
+      <p className="card-title text-[var(--text-2)] text-[.7rem] max-[376px]:text-[.6rem] tracking-wider mt-1">
         {title}
       </p>
 
@@ -29,7 +29,7 @@ const Card = ({ icon, title, value, rate }: CardType) => {
         {value}
       </h1>
 
-      <div className="card-details flex items-center justify-start gap-x-2 mt-1 flex-wrap">
+      <div className="card-details flex items-center justify-start gap-x-2 max-[376px]:gap-x-1 mt-1 flex-wrap">
         {isPositive && <img src={ArrowUpIcon} alt="arrow_up_icon" />}
         {isNegative && <img src={ArrowDownIcon} alt="arrow_down_icon" />}
         <span className="text-[var(--text-3)] text-[.75rem]">

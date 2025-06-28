@@ -9,6 +9,7 @@ import UserManagement from "./pages/UserManagement";
 import AllTransactions from "./pages/transactions/AllTransactions";
 import PendingValidations from "./pages/transactions/PendingValidations";
 import ScheduledPayments from "./pages/transactions/ScheduledPayments";
+import CounterpartyLedger from "./pages/transactions/CounterpartyLedger";
 
 // Line in the graph
 {
@@ -43,6 +44,10 @@ const App = () => {
             <Route path="all" element={<AllTransactions />} />
             <Route path="pending-validation" element={<PendingValidations />} />
             <Route path="scheduled-payments" element={<ScheduledPayments />} />
+            <Route
+              path="counterparty-ledger"
+              element={<CounterpartyLedger />}
+            />
           </Route>
         </Routes>
       </Router>

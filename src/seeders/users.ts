@@ -178,3 +178,111 @@ export const users: User[] = [
     imageUrl: "https://picsum.photos/40/40?random=8",
   },
 ];
+
+export type LedgerEntry = {
+  name: string;
+  phone: string;
+  addedBy: string;
+  date: string;
+  status: "Approved" | "Pending" | "Rejected";
+  avatarUrl: string;
+};
+
+export const ledgerList: LedgerEntry[] = [
+  {
+    name: "Michael Carter (Corp)",
+    phone: "03123456789",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Pending",
+    avatarUrl: "https://picsum.photos/seed/1/40",
+  },
+  {
+    name: "Sophia Ahmed (Corp)",
+    phone: "03019876543",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Approved",
+    avatarUrl: "https://picsum.photos/seed/2/40",
+  },
+  {
+    name: "Liam Hassan (Corp)",
+    phone: "03216789456",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Rejected",
+    avatarUrl: "https://picsum.photos/seed/3/40",
+  },
+  {
+    name: "Ayesha Malik (Corp)",
+    phone: "03451234567",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Pending",
+    avatarUrl: "https://picsum.photos/seed/4/40",
+  },
+  {
+    name: "Michael Carter (Corp)",
+    phone: "03123456789",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Pending",
+    avatarUrl: "https://picsum.photos/seed/1/40",
+  },
+  {
+    name: "Sophia Ahmed (Corp)",
+    phone: "03019876543",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Approved",
+    avatarUrl: "https://picsum.photos/seed/2/40",
+  },
+  {
+    name: "Liam Hassan (Corp)",
+    phone: "03216789456",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Rejected",
+    avatarUrl: "https://picsum.photos/seed/3/40",
+  },
+  {
+    name: "Ayesha Malik (Corp)",
+    phone: "03451234567",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Pending",
+    avatarUrl: "https://picsum.photos/seed/4/40",
+  },
+  {
+    name: "Michael Carter (Corp)",
+    phone: "03123456789",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Pending",
+    avatarUrl: "https://picsum.photos/seed/1/40",
+  },
+  {
+    name: "Sophia Ahmed (Corp)",
+    phone: "03019876543",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Approved",
+    avatarUrl: "https://picsum.photos/seed/2/40",
+  },
+  {
+    name: "Liam Hassan (Corp)",
+    phone: "03216789456",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Rejected",
+    avatarUrl: "https://picsum.photos/seed/3/40",
+  },
+  {
+    name: "Ayesha Malik (Corp)",
+    phone: "03451234567",
+    addedBy: "Admin",
+    date: "30/04/25",
+    status: "Pending",
+    avatarUrl: "https://picsum.photos/seed/4/40",
+  },
+];

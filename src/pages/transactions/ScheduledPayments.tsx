@@ -39,13 +39,13 @@ const Card: React.FC<Props> = ({ name, amount, date, status, approvers }) => {
       <button className="add-btn absolute bottom-9 right-5 p-4 bg-[var(--accent)] text-white font-bold rounded-full">
         <PlusIcon size={30} strokeWidth={2.5} />
       </button>
-      <div className="flex justify-between items-center border-b border-[var(--border)] px-4 py-4 pb-2">
+      <div className="flex justify-between items-center border-b border-[var(--border)] p-4 max-[321px]:px-3 pb-2">
         <p className="text-[.80rem]">{name}</p>
         <p className="font-semibold text-lg">${amount.toLocaleString()}</p>
       </div>
 
-      <div className="flex justify-between items-center mt-4 px-4">
-        <p className="text-xs text-[var(--text-4)]">
+      <div className="flex justify-between items-center mt-4 px-4 max-[321px]:px-3">
+        <p className="text-xs max-[321px]:text-[.7rem] text-[var(--text-4)]">
           Scheduled Date:{" "}
           <span className="text-[var(--text)] ml-1">{date}</span>
         </p>
@@ -56,11 +56,11 @@ const Card: React.FC<Props> = ({ name, amount, date, status, approvers }) => {
         </span>
       </div>
 
-      <p className="mt-2 text-xs text-[var(--text-4)] px-4 flex justify-between border-b border-[var(--border)] pb-2">
+      <p className="mt-2 text-xs text-[var(--text-4)] px-4 max-[321px]:px-3 flex justify-between border-b border-[var(--border)] pb-2">
         Approvers: <span className="text-[var(--text)] mr-2">{approvers}</span>
       </p>
 
-      <div className="mt-2 ml-4 mb-5 flex items-center text-[var(--accent)] text-[.80rem] font-medium cursor-pointer">
+      <div className="mt-2 ml-4 max-[321px]:ml-2 mb-5 flex items-center text-[var(--accent)] text-[.80rem] font-medium cursor-pointer">
         See More <ArrowRight size={19} className="ml-1" />
       </div>
     </div>

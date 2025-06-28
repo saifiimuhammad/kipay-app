@@ -155,7 +155,7 @@ const NavItem = ({
       {link ? (
         <Link
           to={link}
-          className={`nav-link w-full text-sm flex items-center justify-between gap-x-2 ${
+          className={`nav-link max-[321px]:text-xs w-full text-sm flex items-center justify-between gap-x-2 ${
             isLinkActive
               ? "text-white font-semibold"
               : "text-[var(--subtext)] font-normal"
@@ -197,7 +197,7 @@ const NavItem = ({
               <li key={item.link}>
                 <Link
                   to={item.link}
-                  className={`text-sm flex items-center gap-x-2 ${
+                  className={`text-sm max-[376px]:text-xs max-[321px]:text-[.6rem] flex items-center gap-x-2 ${
                     isChildActive
                       ? "text-white font-medium"
                       : "text-[var(--subtext)] hover:text-white"
