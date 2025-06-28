@@ -35,10 +35,10 @@ const UserManagement = () => {
       <div className="flex items-center justify-center w-full">
         <button
           onClick={handleToggle}
-          className="relative inline-flex items-center w-full max-w-[sm] h-12 rounded-full p-1 transition-colors duration-300 ease-in-out bg-[var(--card-bg)]"
+          className="relative inline-flex items-center w-full max-w-[sm] h-12 max-[321px]:h-10 rounded-full p-1 transition-colors duration-300 ease-in-out bg-[var(--card-bg)]"
         >
           <span
-            className={`absolute w-1/2 h-12 bg-white text-black text-sm sm:text-sm grid place-items-center font-semibold rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${
+            className={`absolute w-1/2 h-12 max-[321px]:h-10 bg-white text-black text-sm sm:text-sm grid place-items-center font-semibold rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${
               isIndividual ? "translate-x-0" : "translate-x-full"
             }`}
             style={{ width: "50%", left: 0 }}

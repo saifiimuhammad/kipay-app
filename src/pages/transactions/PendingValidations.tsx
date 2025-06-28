@@ -57,11 +57,15 @@ const Card: React.FC<Transaction> = ({
     <div className="flex items-center justify-between flex-col bg-[var(--card-bg)] text-white rounded-lg shadow-md w-full">
       {/* top */}
       <div className="flex items-center justify-between w-full p-4 pb-2 border-b border-[var(--border)]">
-        <span className="text-md">{id}</span>
-        <span className="text-[var(--text-3)] text-sm flex items-center justify-center gap-x-3">
+        <span className="text-md max-[321px]:text-sm">{id}</span>
+        <span className="text-[var(--text-3)] text-sm max-[321px]:text-xs flex items-center justify-center gap-x-3">
           {date}{" "}
           <button>
-            <img src={MenuDotIcon} alt="menu_icon" className="w-6 h-6" />
+            <img
+              src={MenuDotIcon}
+              alt="menu_icon"
+              className="w-6 h-6 max-[321px]:w-5 max-[321px]:h-5"
+            />
           </button>
         </span>
       </div>
@@ -69,10 +73,10 @@ const Card: React.FC<Transaction> = ({
       {/* medium */}
       <div className="w-full flex items-center justify-between px-4 border-b border-[var(--border)]">
         <div className="flex items-start justify-center flex-col gap-y-2 pt-2 pb-4">
-          <span className="text-md">{company}</span>
-          <span className="text-[var(--text-4)] text-[.80rem]">
+          <span className="text-md max-[321px]:text-sm">{company}</span>
+          <span className="text-[var(--text-4)] text-[.80rem] max-[321px]:text-[.7rem]">
             Approval:{" "}
-            <span className="ml-1 text-[var(--text)] font-medium text-[.80rem]">
+            <span className="ml-1 text-[var(--text)] font-medium text-[.80rem] max-[321px]:text-[.7rem]">
               {approvalType}
             </span>
           </span>
@@ -82,7 +86,7 @@ const Card: React.FC<Transaction> = ({
             ${amount.toLocaleString()}
           </span>
           <span
-            className={`${getStatusColor()} bg-[#313131] text-xs px-3 py-2 rounded-3xl`}
+            className={`${getStatusColor()} bg-[#313131] text-xs px-3 py-2 max-[321px]:px-2 max-[321px]:py-1 rounded-3xl text-center`}
           >
             {getStatusDisplay()}
           </span>
@@ -91,10 +95,10 @@ const Card: React.FC<Transaction> = ({
 
       {/* bottom */}
       <div className="w-full grid grid-cols-2 gap-4 px-4 pt-4 pb-6">
-        <button className="text-[var(--accent)] border-2 border-[var(--accent)] text-md font-medium px-4 py-2 rounded-full w-full">
+        <button className="text-[var(--accent)] border-2 border-[var(--accent)] text-md max-[321px]:text-sm font-medium px-4 py-2 max-[321px]:px-3 rounded-full w-full">
           Reject
         </button>
-        <button className="bg-[var(--accent)] text-[var(--text)] border-2 border-[var(--accent)] text-md font-medium px-4 py-2 rounded-full w-full">
+        <button className="bg-[var(--accent)] text-[var(--text)] border-2 border-[var(--accent)] text-md max-[321px]:text-sm font-medium px-4 py-2 max-[321px]:px-3 rounded-full w-full">
           Approve
         </button>
       </div>

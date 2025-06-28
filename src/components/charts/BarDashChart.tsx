@@ -9,6 +9,9 @@ import {
 } from "recharts";
 import { ChevronDown } from "lucide-react";
 
+import line1 from "../../assets/icons/line1.svg";
+import line2 from "../../assets/icons/line2.svg";
+
 type ChartPropType = {
   title: string;
   value: string;
@@ -21,18 +24,21 @@ type ChartPropType = {
 const BarDashChart = ({ title, value, data }: ChartPropType) => {
   return (
     <div className="bg-[var(--card-bg)] text-white p-4 rounded-xl w-full">
-      <div className="flex items-center justify-between mb-1">
-        <div className="relative">
-          <h2 className="text-sm font-medium">{title}</h2>
-          <span className="absolute -bottom-1 left-0 min-[375px]:w-[162px] w-[193px] h-[1px] bg-white/20 rounded" />
-          <span className="absolute bottom-[2.5px] left-40 min-[375px]:w-5 h-[1px] bg-white/20 rounded -rotate-45" />
-          <span className="absolute -bottom-1 left-0 w-6 h-[3px] bg-[var(--accent)] rounded" />
+      <div className="flex items-end justify-center mb-1 w-full">
+        <div className="w-full">
+          <h2 className="text-sm max-[425px]:text-[.8rem] max-[391px]:text-[.7rem] max-[361px]:text-[.6rem] max-[321px]:text-[.55rem] font-medium">
+            {title}
+          </h2>
+          <img src={line1} alt="line_1" className="w-full" />
         </div>
-        <div className="relative">
+        <div className="w-full">
+          <img src={line2} alt="line_2" className="w-full" />
+          <div className="h-[2px]"></div>
+        </div>
+        <div className="">
           <button className="flex items-center text-xs gap-1 text-white/80 border-2 border-white/20 p-2 rounded-md">
             April <ChevronDown size={14} />
           </button>
-          <span className="absolute right-16 bottom-[18px] min-[425px]:w-30 min-[375px]:w-[71px] h-[1px] bg-white/20 rounded" />
         </div>
       </div>
 
