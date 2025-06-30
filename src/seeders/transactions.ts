@@ -229,6 +229,7 @@ export const pendingValidations: Transaction[] = transactions.map((txn) => ({
 }));
 
 type ScheduledPaymentsType = {
+  id: string;
   name: string;
   amount: number;
   scheduledDate: string;
@@ -238,6 +239,7 @@ type ScheduledPaymentsType = {
 
 export const scheduledPayments: ScheduledPaymentsType[] = [
   {
+    id: "3243242",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",
@@ -245,6 +247,7 @@ export const scheduledPayments: ScheduledPaymentsType[] = [
     approvers: "2 of 3 Required",
   },
   {
+    id: "32445342",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",
@@ -252,6 +255,7 @@ export const scheduledPayments: ScheduledPaymentsType[] = [
     approvers: "2 of 3 Required",
   },
   {
+    id: "323423242",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",
@@ -259,6 +263,7 @@ export const scheduledPayments: ScheduledPaymentsType[] = [
     approvers: "2 of 3 Required",
   },
   {
+    id: "32dfd242",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",
@@ -266,6 +271,7 @@ export const scheduledPayments: ScheduledPaymentsType[] = [
     approvers: "2 of 3 Required",
   },
   {
+    id: "3d3242",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",
@@ -273,6 +279,7 @@ export const scheduledPayments: ScheduledPaymentsType[] = [
     approvers: "2 of 3 Required",
   },
   {
+    id: "324142",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",
@@ -280,6 +287,7 @@ export const scheduledPayments: ScheduledPaymentsType[] = [
     approvers: "2 of 3 Required",
   },
   {
+    id: "324389842",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",
@@ -287,6 +295,7 @@ export const scheduledPayments: ScheduledPaymentsType[] = [
     approvers: "2 of 3 Required",
   },
   {
+    id: "32gh772",
     name: "Samuel Johnson (Corp)",
     amount: 12500,
     scheduledDate: "30-04-25",

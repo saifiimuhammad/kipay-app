@@ -23,7 +23,7 @@ const UserCard: React.FC<User> = ({
   };
 
   return (
-    <div className="flex items-center justify-between bg-[var(--bg)] text-white px-2 max-[376px]:px-0 py-3 w-full border-b border-[var(--border)]">
+    <div className="flex items-center justify-between bg-[var(--bg)] text-white px-2 max-[376px]:px-0 py-3 w-full border-b border-[var(--border)] cursor-pointer">
       <div className="flex items-center justify-start w-full">
         <img
           src={imageUrl}

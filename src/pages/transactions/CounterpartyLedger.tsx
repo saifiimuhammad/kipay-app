@@ -1,7 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-
 import SearchFilter from "../../components/SearchFilter";
-
 import { ledgerList, type LedgerEntry } from "../../seeders/users";
 
 const filterValues = ["Approved", "Pending", "Refused"];
@@ -20,7 +18,7 @@ const CounterpartyLedger = () => {
   };
 
   return (
-    <div className="w-full bg-[var(--bg)] px-4 pb-4">
+    <div className="w-full bg-[var(--bg)] px-4 lg:px-32 pb-4">
       <SearchFilter
         value={searchValue}
         onChange={handleOnSearch}
@@ -28,10 +26,8 @@ const CounterpartyLedger = () => {
         filterValues={filterValues}
       />
 
-      {/* render list */}
-      <div
-        className={`transaction-list w-full h-screen overflow-scroll flex flex-col gap-y-2`}
-      >
+      {/* Scrollable Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 h-[600px] overflow-y-auto mt-4 pr-2 scrollbar-hidden">
         {ledgerList.map((val) => (
           <Card
             key={val.name}
@@ -71,28 +67,27 @@ const Card: React.FC<LedgerEntry> = ({
 
   return (
     <div className="flex items-center justify-between bg-[var(--bg)] text-white px-2 max-[376px]:px-0 py-3 w-full border-b border-[var(--border)]">
-      <div className="flex items-center justify-start w-full">
+      <div className="flex items-center justify-start w-full cursor-pointer">
         <img
           src={avatarUrl}
           alt={`${name}'s profile`}
           className="w-10 h-10 rounded-full mr-2"
         />
-        <div className="flex items-start justify-center flex-col gap-y-1 mb-2">
+        <div className="flex flex-col gap-y-1 mb-2">
           <span className="font-semibold max-[321px]:text-sm">{name}</span>
-
-          <div className="text-[var(--text-3)] text-xs max-[376px]:text-[.7rem] max-[321px]:text-[.55rem] flex items-center justify-center gap-x-2">
-            {phone}{" "}
-            <hr className="h-[14px] w-[1px] bg-[var(--border)] rounded-full mr-2 max-[376px]:mr-0" />{" "}
+          <div className="text-[var(--text-3)] text-xs max-[376px]:text-[.7rem] max-[321px]:text-[.55rem] flex items-center gap-x-2">
+            {phone}
+            <hr className="h-[14px] w-[1px] bg-[var(--border)] rounded-full" />
             Added by {addedBy}
-            <hr className="h-[14px] w-[1px] bg-[var(--border)] rounded-full ml-2 max-[376px]:ml-1 max-[321px]:hidden" />{" "}
+            <hr className="h-[14px] w-[1px] bg-[var(--border)] rounded-full max-[321px]:hidden" />
           </div>
         </div>
       </div>
-      <div className="flex items-end justify-center flex-col gap-y-2">
+      <div className="flex flex-col items-end gap-y-2">
         <span className="text-xs">{date}</span>
         {status && (
           <span
-            className={`ml-2 ${getStatusStyle()} bg-[var(--card-bg)] text-xs px-3 py-1 rounded-xl`}
+            className={`${getStatusStyle()} bg-[var(--card-bg)] text-xs px-3 py-1 rounded-xl`}
           >
             {status}
           </span>

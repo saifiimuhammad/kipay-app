@@ -38,7 +38,7 @@ const TransactionCard: React.FC<Transaction> = ({
         <span className="text-md max-[321px]:text-sm">{id}</span>
         <span className="text-[var(--text-3)] text-sm max-[321px]:text-xs flex items-center justify-center gap-x-3">
           {date}{" "}
-          <button>
+          <button className="cursor-pointer">
             <img
               src={MenuDotIcon}
               alt="menu_icon"

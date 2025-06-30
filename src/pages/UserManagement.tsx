@@ -28,32 +28,35 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="w-full bg-[var(--bg)] p-4">
-      <button className="add-btn absolute bottom-20 right-5 p-4 bg-[var(--accent)] text-white font-bold rounded-full">
+    <div className="w-full bg-[var(--bg)] p-4 lg:px-32">
+      {/* Add Button */}
+      <button className="add-btn fixed bottom-20 right-5 lg:right-10 p-4 bg-[var(--accent)] text-white font-bold rounded-full z-50 cursor-pointer">
         <PlusIcon size={30} strokeWidth={2.5} />
       </button>
-      {/* Toggle button for Individual or Corporate Users */}
-      <div className="flex items-center justify-center w-full">
+
+      {/* Toggle button */}
+      <div className="flex justify-center w-full my-4 lg:my-1">
         <button
           onClick={handleToggle}
-          className="relative inline-flex items-center w-full max-w-[sm] h-12 max-[321px]:h-10 rounded-full p-1 transition-colors duration-300 ease-in-out bg-[var(--card-bg)]"
+          className="relative inline-flex items-center h-12 max-[321px]:h-10 rounded-full p-1 transition-colors duration-300 ease-in-out bg-[var(--card-bg)] w-[280px] cursor-pointer"
         >
           <span
-            className={`absolute w-1/2 h-12 max-[321px]:h-10 bg-white text-black text-sm sm:text-sm grid place-items-center font-semibold rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${
+            className={`absolute w-1/2 h-12 max-[321px]:h-10 bg-white text-black text-sm grid place-items-center font-semibold rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${
               isIndividual ? "translate-x-0" : "translate-x-full"
             }`}
-            style={{ width: "50%", left: 0 }}
           >
             {isIndividual ? "Individual" : "Corporate"}
           </span>
-          <span className="flex-1 text-center text-sm sm:text-sm font-medium transition-colors duration-300 text-[var(--text-3)]">
+          <span className="flex-1 text-center text-sm font-medium transition-colors duration-300 text-[var(--text-3)]">
             Individual
           </span>
-          <span className="flex-1 text-center text-sm sm:text-sm font-medium transition-colors duration-300 text-[var(--text-3)]">
+          <span className="flex-1 text-center text-sm font-medium transition-colors duration-300 text-[var(--text-3)]">
             Corporate
           </span>
         </button>
       </div>
+
+      {/* Search + Filter */}
       <SearchFilter
         value={searchValue}
         onChange={handleOnSearch}
@@ -61,29 +64,18 @@ const UserManagement = () => {
         filterValues={filterValues}
       />
 
-      {/* Users lists */}
-      <div className={`users-list w-full h-screen overflow-scroll`}>
-        {isIndividual
-          ? users.map((value) => (
-              <UserCard
-                key={value.email}
-                name={value.name}
-                email={value.email}
-                phone={value.phone}
-                status={value.status}
-                imageUrl={value.imageUrl}
-              />
-            ))
-          : corporates.map((value) => (
-              <UserCard
-                key={value.email}
-                name={value.name}
-                email={value.email}
-                phone={value.phone}
-                status={value.status}
-                imageUrl={value.imageUrl}
-              />
-            ))}
+      {/* User cards grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 h-[500px] overflow-y-auto pr-2 scrollbar-hidden">
+        {(isIndividual ? users : corporates).map((user) => (
+          <UserCard
+            key={user.email}
+            name={user.name}
+            email={user.email}
+            phone={user.phone}
+            status={user.status}
+            imageUrl={user.imageUrl}
+          />
+        ))}
       </div>
     </div>
   );

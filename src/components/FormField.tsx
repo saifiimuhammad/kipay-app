@@ -21,19 +21,19 @@ export default function FormField({
   const isPassword = type === "password";
 
   return (
-    <div className="space-y-1 w-full">
-      <div className="flex items-center bg-[#2b2b2b] rounded-full px-6 py-4">
+    <div className="relative space-y-1 w-full">
+      <div className="flex items-center bg-[#2b2b2b] rounded-full px-6 py-4 ">
         {icon && <span className="mr-3 text-[var(--accent)]">{icon}</span>}
         <input
           type={isPassword && !showPassword ? "password" : "text"}
           {...registration}
           placeholder={placeholder}
-          className="outline-none text-(var(--text-2)) w-full placeholder:text-[var(--text-2)]"
+          className="outline-none text-(var(--text-2)) w-full placeholder:text-[var(--text-2)] "
         />
         {isPassword && (
           <span
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-10 text-[var(--text-4)] hover:text-[var(--text)] cursor-pointer"
+            className="absolute right-7 text-[var(--text-4)] hover:text-[var(--text)] cursor-pointer"
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </span>

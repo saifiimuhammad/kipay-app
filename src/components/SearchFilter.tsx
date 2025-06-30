@@ -24,8 +24,9 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
   };
 
   return (
-    <div className="py-7">
-      <div className="relative w-full">
+    <div className="py-7 lg:py-4 lg:flex lg:items-center lg:justify-between lg:gap-6 flex-wrap">
+      {/* search bar */}
+      <div className="relative w-full lg:w-[60%]">
         <input
           type="text"
           value={value}
@@ -38,14 +39,16 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
           size={20}
         />
       </div>
-      <div className="flex items-center justify-between mt-4 text-sm px-2 max-[321px]:px-0">
+
+      {/* buttons */}
+      <div className="flex items-center justify-center gap-2 mt-4 lg:mt-0 text-xs lg:text-sm px-2 max-[321px]:px-0">
         <button
           onClick={() => handleFilterClick("All")}
           className={`flex items-center justify-center gap-x-1 px-4 py-2 max-[376px]:px-2 max-[375px]:py-1 rounded ${
             activeFilter === "All"
               ? "bg-white text-black"
               : "bg-[var(--bg)] border-2 border-[var(--border)] text-[var(--text-3)]"
-          } hover:bg-opacity-90 max-[321px]:text-xs`}
+          } hover:bg-opacity-90 max-[321px]:text-xs cursor-pointer`}
         >
           All <ChevronDown size={18} />
         </button>
@@ -58,7 +61,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
               activeFilter === value
                 ? "bg-white text-black"
                 : "bg-[var(--bg)] border-2 border-[var(--border)] text-[var(--text-3)]"
-            } hover:bg-opacity-90 max-[321px]:text-xs`}
+            } hover:bg-opacity-90 max-[321px]:text-xs cursor-pointer`}
           >
             {value}
           </button>

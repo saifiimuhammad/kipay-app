@@ -14,6 +14,7 @@
   --error: #ff3b30;
 
   --card-bg: #2c2c2c;
+  --card-bg-2: #2a2a2a;
 }
 
 * {
@@ -44,4 +45,19 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Hide scrollbar for WebKit */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Add in global CSS or Tailwind's global layer */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
 }

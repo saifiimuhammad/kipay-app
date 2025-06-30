@@ -38,25 +38,29 @@ const Sidebar = ({
       <div
         className={`lightbox absolute top-0 left-0 ${
           isSidebarOpen ? "w-full" : "w-0"
-        } h-screen bg-black opacity-70 z-99`}
+        } h-screen bg-black opacity-70 z-99 `}
       ></div>
       <aside
         className={`sidebar absolute top-0 left-0 ${
-          isSidebarOpen ? "w-[60%]" : "w-0"
+          isSidebarOpen ? "w-[60%] lg:w-1/3" : "w-0"
         } h-screen bg-[var(--bg)] transition-all duration-100 z-99`}
       >
         <div
           className={`sidebar-header h-24 w-full border-b border-[var(--border)] ${
             isSidebarOpen ? "flex" : "hidden"
-          } items-end justify-between px-4 pb-5 transition-all duration-200`}
+          } items-end justify-between px-4 lg:pl-10 lg:pr-6 pb-5 transition-all duration-200`}
         >
-          <h1 className="sidebar-title">Menu</h1>
-          <img src={MenuCloseIcon} onClick={handleSidebarClose} />
+          <h1 className="sidebar-title lg:text-md">Menu</h1>
+          <img
+            src={MenuCloseIcon}
+            onClick={handleSidebarClose}
+            className="cursor-pointer"
+          />
         </div>
 
         {/* Sidebar navigation */}
         <div
-          className={`sidebar-nav px-5 pt-6 ${
+          className={`sidebar-nav px-5 lg:pl-8 pt-6 ${
             isSidebarOpen ? "" : "hidden"
           } transition-all duration-200`}
         >
@@ -64,21 +68,21 @@ const Sidebar = ({
             <NavItem
               link="/"
               title="Dashboard"
-              icon={<img src={DashboardIcon} />}
-              activeIcon={<img src={DashboardFilledIcon} />}
+              icon={<img src={DashboardIcon} className="lg:w-7" />}
+              activeIcon={<img src={DashboardFilledIcon} className="lg:w-7" />}
               currentPath={pathname}
             />
             <NavItem
               link="/users"
               title="User Management"
-              icon={<img src={UsersIcon} />}
-              activeIcon={<img src={UsersFilledIcon} />}
+              icon={<img src={UsersIcon} className="lg:w-7" />}
+              activeIcon={<img src={UsersFilledIcon} className="lg:w-7" />}
               currentPath={pathname}
             />
             <NavItem
               title="Transactions"
-              icon={<img src={WalletIcon} />}
-              activeIcon={<img src={WalletFilledIcon} />}
+              icon={<img src={WalletIcon} className="lg:w-7" />}
+              activeIcon={<img src={WalletFilledIcon} className="lg:w-7" />}
               currentPath={pathname}
               isDropdown
               isOpen={
@@ -91,28 +95,28 @@ const Sidebar = ({
                 {
                   link: "/transactions/all",
                   title: "All Transactions",
-                  icon: <img src={AllTransactionsIcon} />,
+                  icon: <img src={AllTransactionsIcon} className="lg:w-7" />,
                 },
                 {
                   link: "/transactions/pending-validation",
                   title: "Pending validation",
-                  icon: <img src={PendingVerifIcon} />,
+                  icon: <img src={PendingVerifIcon} className="lg:w-7" />,
                 },
                 {
                   link: "/transactions/scheduled-payments",
                   title: "Schedule payment",
-                  icon: <img src={SchedulePayIcon} />,
+                  icon: <img src={SchedulePayIcon} className="lg:w-7" />,
                 },
                 {
                   link: "/transactions/counterparty-ledger",
                   title: "Counterparty ledger",
-                  icon: <img src={LedgerIcon} />,
+                  icon: <img src={LedgerIcon} className="lg:w-7" />,
                 },
               ]}
             />
             <li className="nav-item">
-              <button className="nav-link text-sm text-[var(--error)] flex items-start justify-center gap-x-2">
-                <img src={LogoutIcon} /> Logout
+              <button className="nav-link text-sm lg:text-lg text-[var(--error)] flex items-center justify-center gap-x-2 cursor-pointer">
+                <img src={LogoutIcon} className="lg:w-7" /> Logout
               </button>
             </li>
           </ul>
@@ -155,7 +159,7 @@ const NavItem = ({
       {link ? (
         <Link
           to={link}
-          className={`nav-link max-[321px]:text-xs w-full text-sm flex items-center justify-between gap-x-2 ${
+          className={`nav-link max-[321px]:text-xs lg:text-lg w-full text-sm flex items-center justify-between gap-x-2 ${
             isLinkActive
               ? "text-white font-semibold"
               : "text-[var(--subtext)] font-normal"
@@ -172,7 +176,7 @@ const NavItem = ({
       ) : (
         <div
           onClick={isDropdown ? onClick : undefined}
-          className={`nav-link text-sm flex items-center justify-between gap-x-2 cursor-pointer ${
+          className={`nav-link text-sm lg:text-lg flex items-center justify-between gap-x-2 cursor-pointer ${
             isLinkActive
               ? "text-white font-semibold"
               : "text-[var(--subtext)] font-normal"
@@ -197,7 +201,7 @@ const NavItem = ({
               <li key={item.link}>
                 <Link
                   to={item.link}
-                  className={`text-sm max-[376px]:text-xs max-[321px]:text-[.6rem] flex items-center gap-x-2 ${
+                  className={`text-sm max-[376px]:text-xs lg:text-lg max-[321px]:text-[.6rem] flex items-center gap-x-2 ${
                     isChildActive
                       ? "text-white font-medium"
                       : "text-[var(--subtext)] hover:text-white"
