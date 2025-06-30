@@ -1,30 +1,43 @@
+import type { Dispatch, SetStateAction } from "react";
 import MenuDotIcon from "../../assets/icons/menu-dot.svg";
-
 import {
   pendingValidations,
   type Transaction,
 } from "../../seeders/transactions";
 
-const PendingValidations = () => {
+const PendingValidations = ({
+  isDialogOpen,
+  setIsDialogOpen,
+  setId,
+}: {
+  isDialogOpen: boolean;
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>;
+  setId: Dispatch<SetStateAction<string>>;
+}) => {
   return (
-    <div className="pending-list w-full h-screen overflow-scroll flex flex-col gap-y-3 bg-[var(--bg)] p-4">
-      {pendingValidations.map((val) => (
-        <Card
-          key={val.id}
-          id={val.id}
-          date={val.date}
-          company={val.company}
-          amount={val.amount}
-          approvalType={val.approvalType}
-          signaturesRequired={val.signaturesRequired}
-          status={val.status}
-        />
-      ))}
+    <div className="w-full bg-[var(--bg)] p-4 lg:px-32">
+      {/* Scrollable Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-[600px] overflow-y-auto pr-2 scrollbar-hidden">
+        {pendingValidations.map((val) => (
+          <Card
+            key={val.id}
+            id={val.id}
+            date={val.date}
+            company={val.company}
+            amount={val.amount}
+            approvalType={val.approvalType}
+            signaturesRequired={val.signaturesRequired}
+            status={val.status}
+            setIsDialogOpen={setIsDialogOpen}
+            setId={setId}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
-const Card: React.FC<Transaction> = ({
+const Card = ({
   id,
   date,
   company,
@@ -32,6 +45,18 @@ const Card: React.FC<Transaction> = ({
   approvalType,
   signaturesRequired,
   status,
+  setIsDialogOpen,
+  setId,
+}: {
+  id: string;
+  date: string;
+  company: string;
+  amount: number;
+  approvalType: "Single signature" | "Joint signature";
+  signaturesRequired?: string;
+  status: "Completed" | "Pending" | "Rejected";
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>;
+  setId: Dispatch<SetStateAction<string>>;
 }) => {
   const getStatusDisplay = () => {
     if (status === "Pending" && signaturesRequired) {
@@ -54,13 +79,13 @@ const Card: React.FC<Transaction> = ({
   };
 
   return (
-    <div className="flex items-center justify-between flex-col bg-[var(--card-bg)] text-white rounded-lg shadow-md w-full">
-      {/* top */}
+    <div className="flex flex-col bg-[var(--card-bg)] text-white rounded-lg shadow-md w-full">
+      {/* Top */}
       <div className="flex items-center justify-between w-full p-4 pb-2 border-b border-[var(--border)]">
         <span className="text-md max-[321px]:text-sm">{id}</span>
         <span className="text-[var(--text-3)] text-sm max-[321px]:text-xs flex items-center justify-center gap-x-3">
-          {date}{" "}
-          <button>
+          {date}
+          <button className="cursor-pointer">
             <img
               src={MenuDotIcon}
               alt="menu_icon"
@@ -70,35 +95,41 @@ const Card: React.FC<Transaction> = ({
         </span>
       </div>
 
-      {/* medium */}
+      {/* Middle */}
       <div className="w-full flex items-center justify-between px-4 border-b border-[var(--border)]">
-        <div className="flex items-start justify-center flex-col gap-y-2 pt-2 pb-4">
+        <div className="flex flex-col gap-y-2 pt-2 pb-4">
           <span className="text-md max-[321px]:text-sm">{company}</span>
           <span className="text-[var(--text-4)] text-[.80rem] max-[321px]:text-[.7rem]">
-            Approval:{" "}
+            Approval:
             <span className="ml-1 text-[var(--text)] font-medium text-[.80rem] max-[321px]:text-[.7rem]">
               {approvalType}
             </span>
           </span>
         </div>
-        <div className="flex items-end justify-center flex-col gap-y-1 pt-2 pb-4">
+        <div className="flex flex-col gap-y-1 pt-2 pb-4 text-end">
           <span className="text-lg font-semibold">
             ${amount.toLocaleString()}
           </span>
           <span
-            className={`${getStatusColor()} bg-[#313131] text-xs px-3 py-2 max-[321px]:px-2 max-[321px]:py-1 rounded-3xl text-center`}
+            className={`${getStatusColor()} bg-[#313131] text-xs px-3 py-2 max-[321px]:px-2 max-[321px]:py-1 rounded-3xl`}
           >
             {getStatusDisplay()}
           </span>
         </div>
       </div>
 
-      {/* bottom */}
+      {/* Bottom */}
       <div className="w-full grid grid-cols-2 gap-4 px-4 pt-4 pb-6">
-        <button className="text-[var(--accent)] border-2 border-[var(--accent)] text-md max-[321px]:text-sm font-medium px-4 py-2 max-[321px]:px-3 rounded-full w-full">
+        <button className="text-[var(--accent)] border-2 border-[var(--accent)] text-md max-[321px]:text-sm font-medium px-4 py-2 max-[321px]:px-3 rounded-full w-full cursor-pointer">
           Reject
         </button>
-        <button className="bg-[var(--accent)] text-[var(--text)] border-2 border-[var(--accent)] text-md max-[321px]:text-sm font-medium px-4 py-2 max-[321px]:px-3 rounded-full w-full">
+        <button
+          className="bg-[var(--accent)] text-[var(--text)] border-2 border-[var(--accent)] text-md max-[321px]:text-sm font-medium px-4 py-2 max-[321px]:px-3 rounded-full w-full cursor-pointer"
+          onClick={() => {
+            setIsDialogOpen(true);
+            setId(id);
+          }}
+        >
           Approve
         </button>
       </div>

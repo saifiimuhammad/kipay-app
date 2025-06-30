@@ -16,26 +16,36 @@ const Card = ({ icon, title, value, rate }: CardType) => {
   const isNegative = rateValue < 0;
 
   return (
-    <div className="card p-4 bg-[var(--card-bg)] rounded-lg">
-      <div className="icon-container w-10 h-10 p-2 bg-[var(--accent)] text-[var(--text)] rounded-sm grid place-items-center">
+    <div className="card p-3 sm:p-4 lg:p-6 bg-[var(--card-bg)] rounded-lg flex flex-col gap-2">
+      {/* Icon */}
+      <div className="icon-container w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 p-2 bg-[var(--accent)] text-[var(--text)] rounded-sm grid place-items-center">
         {icon}
       </div>
 
-      <p className="card-title text-[var(--text-2)] text-[.7rem] max-[376px]:text-[.6rem] tracking-wider mt-1">
+      {/* Title */}
+      <p className="card-title text-[var(--text-2)] text-[.7rem] sm:text-sm lg:text-xs tracking-wider">
         {title}
       </p>
 
-      <h1 className="card-value text-[var(--text)] text-xl font-semibold mt-2">
+      {/* Value */}
+      <h1 className="card-value text-[var(--text)] text-lg sm:text-xl lg:text-3xl font-semibold">
         {value}
       </h1>
 
-      <div className="card-details flex items-center justify-start gap-x-2 max-[376px]:gap-x-1 mt-1 flex-wrap">
-        {isPositive && <img src={ArrowUpIcon} alt="arrow_up_icon" />}
-        {isNegative && <img src={ArrowDownIcon} alt="arrow_down_icon" />}
-        <span className="text-[var(--text-3)] text-[.75rem]">
-          {Math.abs(rateValue)}%
-        </span>
-        <p className="text-[var(--text-4)] text-[.75rem]">(Last 7 days)</p>
+      {/* Rate and Label */}
+      <div className="card-details flex items-center gap-x-2 sm:gap-x-3 flex-wrap text-[.7rem] sm:text-sm lg:text-xs mt-auto">
+        {isPositive && (
+          <img src={ArrowUpIcon} alt="arrow_up_icon" className="w-4 sm:w-5" />
+        )}
+        {isNegative && (
+          <img
+            src={ArrowDownIcon}
+            alt="arrow_down_icon"
+            className="w-4 sm:w-5"
+          />
+        )}
+        <span className="text-[var(--text-3)]">{Math.abs(rateValue)}%</span>
+        <p className="text-[var(--text-4)]">(Last 7 days)</p>
       </div>
     </div>
   );

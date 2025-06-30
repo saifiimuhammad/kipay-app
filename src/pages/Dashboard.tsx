@@ -18,30 +18,29 @@ const chartData = [
 
 const Dashboard = () => {
   return (
-    <div className="w-full h-full bg-[var(--bg)] p-4">
+    <div className="w-full h-full bg-[var(--bg)] p-4 lg:px-32">
       {/* Analytics Cards */}
-      <div className="card-container grid grid-cols-2 gap-4">
+      <div className="card-container grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
         <Card
-          icon={<img src={UsersIcon} />}
+          icon={<img src={UsersIcon} className="lg:w-6" />}
           title="Total users"
           value="350.12K"
           rate="2.5%"
         />
         <Card
-          icon={<img src={WalletIcon} />}
+          icon={<img src={WalletIcon} className="lg:w-6" />}
           title="Pending Transactions"
           value="350.12K"
           rate="2.5%"
         />
-
         <Card
-          icon={<img src={TruckIcon} className="w-5" />}
+          icon={<img src={TruckIcon} className="w-5 lg:w-6" />}
           title="Active Shipments"
           value="350.12K"
           rate="-2.5%"
         />
         <Card
-          icon={<img src={DepositIcon} className="w-5" />}
+          icon={<img src={DepositIcon} className="w-5 lg:w-6" />}
           title="Total Deposit"
           value="350.12K"
           rate="2.5%"
@@ -49,7 +48,7 @@ const Dashboard = () => {
       </div>
 
       {/* Charts */}
-      <div className="w-full pt-4 flex items-center justify-center flex-col gap-y-4">
+      <div className="w-full pt-4 flex flex-col lg:flex-row lg:justify-between gap-4">
         <BarDashChart
           title="Transaction Volume"
           value="$350.12K"

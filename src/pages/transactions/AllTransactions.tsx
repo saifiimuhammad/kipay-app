@@ -20,7 +20,7 @@ const AllTransactions = () => {
   };
 
   return (
-    <div className="w-full bg-[var(--bg)] px-4 pb-4">
+    <div className="w-full bg-[var(--bg)] px-4 lg:px-32 pb-4">
       <SearchFilter
         value={searchValue}
         onChange={handleOnSearch}
@@ -28,10 +28,8 @@ const AllTransactions = () => {
         filterValues={filterValues}
       />
 
-      {/* Transaction lists */}
-      <div
-        className={`transaction-list w-full h-screen overflow-scroll flex flex-col gap-y-2`}
-      >
+      {/* Grid view with scroll */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-[500px] overflow-y-auto mt-6 lg:mt-2 pr-2 scrollbar-hidden">
         {transactions.map((value) => (
           <TransactionCard
             key={value.id}
