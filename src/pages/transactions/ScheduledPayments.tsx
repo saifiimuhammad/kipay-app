@@ -16,6 +16,7 @@ const ScheduledPayments = ({
 
   const handleOnClick = () => {
     navigate("/transactions/scheduled-payments/add");
+    console.log(isDialogOpen);
   };
 
   return (

@@ -35,6 +35,7 @@ const BottomDialog: React.FC<BottomDialogProps> = ({
     // Detect mobile
     const check = window.matchMedia("(pointer: coarse)").matches;
     setIsMobile(check);
+    fetchTransactionDetails();
   }, []);
 
   const fetchTransactionDetails = () => {

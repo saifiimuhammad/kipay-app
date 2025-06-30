@@ -1,10 +1,9 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { useNavigate } from "react-router-dom";
-import { Calendar, ChevronDown } from "lucide-react";
 
 import backIcon from "../../assets/icons/arrow-left.svg";
 import arrowIcon from "../../assets/icons/arrow-line-down.svg";

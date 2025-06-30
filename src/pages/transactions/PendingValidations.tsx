@@ -1,9 +1,6 @@
-import type { Dispatch, SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import MenuDotIcon from "../../assets/icons/menu-dot.svg";
-import {
-  pendingValidations,
-  type Transaction,
-} from "../../seeders/transactions";
+import { pendingValidations } from "../../seeders/transactions";
 
 const PendingValidations = ({
   isDialogOpen,
@@ -14,6 +11,10 @@ const PendingValidations = ({
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>;
   setId: Dispatch<SetStateAction<string>>;
 }) => {
+  useEffect(() => {
+    console.log(isDialogOpen);
+  });
+
   return (
     <div className="w-full bg-[var(--bg)] p-4 lg:px-32">
       {/* Scrollable Grid */}
