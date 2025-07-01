@@ -31,6 +31,12 @@ const Navbar = ({
         return "Scheduled payments";
       case "/transactions/counterparty-ledger":
         return "Counterparty ledger";
+      case "/notifications":
+        return "Push notifications";
+      case "/notifications/add":
+        return "Create notification";
+      case "/support":
+        return "Support";
       default:
         return "Not Found";
     }

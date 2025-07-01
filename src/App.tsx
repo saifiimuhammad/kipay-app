@@ -20,6 +20,10 @@ import TransactionDetails from "./pages/transactions/TransactionDetails";
 import ValidationHistory from "./pages/transactions/ValidationHistory";
 import AddSchedulePayment from "./pages/transactions/AddSchedulePayment";
 import SupportingDocs from "./pages/transactions/SupportingDocs";
+import EditCounterparty from "./pages/transactions/EditCounterparty";
+import Notifcations from "./pages/notifications/Notifcations";
+import AddNotification from "./pages/notifications/AddNotification";
+import Support from "./pages/Support";
 
 const Login = lazy(() => import("./pages/Login"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -59,7 +63,8 @@ const AppRoutes = ({
     /^\/pending-validation\/[^/]+\/supporting-docs$/.test(location.pathname) ||
     location.pathname ===
       "/transactions/pending-validation/validation-history" ||
-    location.pathname === "/transactions/scheduled-payments/add";
+    location.pathname === "/transactions/scheduled-payments/add" ||
+    location.pathname === "/edit";
 
   return (
     <>
@@ -117,6 +122,10 @@ const AppRoutes = ({
           path="pending-validation/:id/supporting-docs"
           element={<SupportingDocs />}
         />
+        <Route path="/edit" element={<EditCounterparty />} />
+        <Route path="/notifications" element={<Notifcations />} />
+        <Route path="/notifications/add" element={<AddNotification />} />
+        <Route path="/support" element={<Support />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </>
