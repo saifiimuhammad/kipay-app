@@ -19,6 +19,7 @@ const UserManagement = () => {
   };
 
   const handleSearchFilter = (toggledFilter: string) => {
+    // Make the search filter according to the dynamic coming data like date joined etc
     setFilterValue(toggledFilter);
     console.log(filterValue);
   };
@@ -28,7 +29,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="w-full bg-[var(--bg)] p-4 lg:px-32">
+    <div className="w-full bg-[var(--bg)] p-4 lg:px-102">
       {/* Add Button */}
       <button className="add-btn fixed bottom-20 right-5 lg:right-10 p-4 bg-[var(--accent)] text-white font-bold rounded-full z-50 cursor-pointer">
         <PlusIcon size={30} strokeWidth={2.5} />
@@ -65,15 +66,17 @@ const UserManagement = () => {
       />
 
       {/* User cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 h-[500px] overflow-y-auto pr-2 scrollbar-hidden">
+      <div className="flex gap-6 flex-col mt-6 h-[500px] overflow-y-auto pr-2 scrollbar-hidden">
         {(isIndividual ? users : corporates).map((user) => (
           <UserCard
-            key={user.email}
+            key={user.id}
+            id={user.id}
             name={user.name}
             email={user.email}
             phone={user.phone}
             status={user.status}
             imageUrl={user.imageUrl}
+            isIndividual={isIndividual}
           />
         ))}
       </div>

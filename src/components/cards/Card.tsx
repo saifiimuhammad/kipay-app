@@ -2,11 +2,12 @@ import type { ReactNode } from "react";
 
 import ArrowDownIcon from "../../assets/icons/arrow-down.svg";
 import ArrowUpIcon from "../../assets/icons/arrow-up.svg";
+import { formatNumber } from "../../lib/utils";
 
 type CardType = {
   icon: ReactNode;
   title: string;
-  value: string;
+  value: number;
   rate: string;
 };
 
@@ -29,7 +30,7 @@ const Card = ({ icon, title, value, rate }: CardType) => {
 
       {/* Value */}
       <h1 className="card-value text-[var(--text)] text-lg sm:text-xl lg:text-3xl font-semibold">
-        {value}
+        {formatNumber(value)}
       </h1>
 
       {/* Rate and Label */}

@@ -4,6 +4,14 @@ import mailIcon from "../assets/icons/mail.svg";
 import arrowIcon from "../assets/icons/arrow-right.svg";
 
 const Support = () => {
+  const handlePhoneSupport = () => {
+    console.log("phone support");
+  };
+
+  const handleEmailSupport = () => {
+    console.log("email support");
+  };
+
   return (
     <div className="bg-[var(--bg)] w-full min-h-screen px-4 lg:px-102">
       {/* top */}
@@ -20,8 +28,8 @@ const Support = () => {
           </p>
         </div>
       </div>
-      {/* bottom */}
 
+      {/* bottom */}
       <div className="card-container flex flex-col gap-4">
         <div className="card p-4 w-full bg-[var(--card-bg)] rounded-xl">
           <div className="w-full flex items-center justify-start gap-2 border-b-2 border-[var(--border)] pb-4">
@@ -29,7 +37,10 @@ const Support = () => {
             <h3 className="text-[var(--text)] font-medium">Phone support</h3>
           </div>
           <div className="">
-            <button className="flex items-center gap-2 text-xs text-[var(--accent)] pt-4 cursor-pointer">
+            <button
+              className="flex items-center gap-2 text-xs text-[var(--accent)] pt-4 cursor-pointer"
+              onClick={handlePhoneSupport}
+            >
               Tap to make a call <img src={arrowIcon} alt="arrow_icon" />
             </button>
           </div>
@@ -45,7 +56,10 @@ const Support = () => {
             <h3 className="text-[var(--text)] font-medium">Email support</h3>
           </div>
           <div className="">
-            <button className="flex items-center gap-2 text-xs text-[var(--accent)] pt-4 cursor-pointer">
+            <button
+              className="flex items-center gap-2 text-xs text-[var(--accent)] pt-4 cursor-pointer"
+              onClick={handleEmailSupport}
+            >
               Tap to open mail client <img src={arrowIcon} alt="arrow_icon" />
             </button>
           </div>

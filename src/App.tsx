@@ -24,6 +24,10 @@ import EditCounterparty from "./pages/transactions/EditCounterparty";
 import Notifcations from "./pages/notifications/Notifcations";
 import AddNotification from "./pages/notifications/AddNotification";
 import Support from "./pages/Support";
+import NotificationDrawer from "./components/dialogs/NotificationDrawer";
+import EditUser from "./pages/user/EditUser";
+import EditCorporate from "./pages/user/EditCorporate";
+import CorporateUserEdit from "./pages/user/CorporateUserEdit";
 
 const Login = lazy(() => import("./pages/Login"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -64,15 +68,26 @@ const AppRoutes = ({
     location.pathname ===
       "/transactions/pending-validation/validation-history" ||
     location.pathname === "/transactions/scheduled-payments/add" ||
-    location.pathname === "/edit";
+    location.pathname === "/edit" ||
+    /^\/users\/individual\/[^/]+\/supporting-docs$/.test(location.pathname) ||
+    /^\/users\/corporate\/[^/]+\/supporting-docs$/.test(location.pathname);
 
   return (
     <>
-      <BottomDialog
-        isOpen={isDialogOpen}
-        setIsOpen={setIsDialogOpen}
-        id={transactionId}
-      />
+      {location.pathname === "/transactions/pending-validation" && (
+        <BottomDialog
+          isOpen={isDialogOpen}
+          setIsOpen={setIsDialogOpen}
+          id={transactionId}
+        />
+      )}
+      {location.pathname === "/notifications" && (
+        <NotificationDrawer
+          isOpen={isDialogOpen}
+          setIsOpen={setIsDialogOpen}
+          id={transactionId}
+        />
+      )}
       {!hideLayout && <Navbar setIsSidebarOpen={setIsSidebarOpen} />}
       {!hideLayout && (
         <Sidebar
@@ -122,8 +137,28 @@ const AppRoutes = ({
           path="pending-validation/:id/supporting-docs"
           element={<SupportingDocs />}
         />
+        <Route
+          path="/users/individual/:id/supporting-docs"
+          element={<SupportingDocs />}
+        />
+        <Route
+          path="/users/corporate/:id/supporting-docs"
+          element={<SupportingDocs />}
+        />
+        <Route path="/users/individual/:id" element={<EditUser />} />
+        <Route path="/users/corporate/:id" element={<EditCorporate />} />
+        <Route path="/users/edit" element={<CorporateUserEdit />} />
         <Route path="/edit" element={<EditCounterparty />} />
-        <Route path="/notifications" element={<Notifcations />} />
+        <Route
+          path="/notifications"
+          element={
+            <Notifcations
+              isDialogOpen={isDialogOpen}
+              setIsDialogOpen={setIsDialogOpen}
+              setId={setTransactionId}
+            />
+          }
+        />
         <Route path="/notifications/add" element={<AddNotification />} />
         <Route path="/support" element={<Support />} />
         <Route path="/login" element={<Login />} />

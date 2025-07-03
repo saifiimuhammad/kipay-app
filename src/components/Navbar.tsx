@@ -18,50 +18,63 @@ const Navbar = ({
   };
 
   const setNavTitle = () => {
-    switch (location.pathname) {
-      case "/":
-        return "Dashboard";
-      case "/users":
-        return "User Management";
-      case "/transactions/all":
-        return "All Transactions";
-      case "/transactions/pending-validation":
-        return "Pending validation";
-      case "/transactions/scheduled-payments":
-        return "Scheduled payments";
-      case "/transactions/counterparty-ledger":
-        return "Counterparty ledger";
-      case "/notifications":
-        return "Push notifications";
-      case "/notifications/add":
-        return "Create notification";
-      case "/support":
-        return "Support";
-      default:
-        return "Not Found";
-    }
+    const path = location.pathname;
+
+    if (path === "/") return "Dashboard";
+    if (path === "/users") return "User Management";
+    if (path.startsWith("/users/individual/")) return "User edit";
+    if (path.startsWith("/users/corporate/")) return "Corporate edit";
+    if (path === "/transactions/all") return "All Transactions";
+    if (path === "/transactions/pending-validation")
+      return "Pending validation";
+    if (path === "/transactions/scheduled-payments")
+      return "Scheduled payments";
+    if (path === "/transactions/counterparty-ledger")
+      return "Counterparty ledger";
+    if (path === "/notifications") return "Push notifications";
+    if (path === "/notifications/add") return "Create notification";
+    if (path === "/support") return "Support";
+
+    return "Not Found";
   };
 
   const setIcon = () => {
-    switch (location.pathname) {
-      case "/":
-        return <></>;
-      case "/users":
-        return <img src={exportIcon} alt="export_icon" />;
-      case "/transactions/pending-validation":
-        return (
-          <img
-            src={historyIcon}
-            alt="history_icon"
-            onClick={() =>
-              navigate("/transactions/pending-validation/validation-history")
-            }
-            className="cursor-pointer"
-          />
-        );
-      default:
-        return <></>;
+    const path = location.pathname;
+
+    if (path === "/") return <></>;
+
+    if (path === "/users") {
+      return (
+        <img src={exportIcon} alt="export_icon" className="cursor-pointer" />
+      );
     }
+
+    if (path.startsWith("/users/individual/")) {
+      return (
+        <img src={exportIcon} alt="export_icon" className="cursor-pointer" />
+      );
+    }
+
+    if (path.startsWith("/users/corporate/")) {
+      return (
+        <img src={exportIcon} alt="export_icon" className="cursor-pointer" />
+      );
+    }
+
+    if (path === "/transactions/pending-validation") {
+      return (
+        <img
+          src={historyIcon}
+          alt="history_icon"
+          onClick={() =>
+            navigate("/transactions/pending-validation/validation-history")
+          }
+          className="cursor-pointer"
+        />
+      );
+    }
+
+    return <></>;
   };
 
   return (

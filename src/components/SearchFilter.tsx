@@ -26,7 +26,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
   return (
     <div className="py-7 lg:py-4 lg:flex lg:items-center lg:justify-between lg:gap-6 flex-wrap">
       {/* search bar */}
-      <div className="relative w-full lg:w-[60%]">
+      <div className="relative w-full">
         <input
           type="text"
           value={value}
@@ -41,7 +41,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
       </div>
 
       {/* buttons */}
-      <div className="flex items-center justify-center gap-2 mt-4 lg:mt-0 text-xs lg:text-sm px-2 max-[321px]:px-0">
+      <div className="w-full flex items-center justify-center gap-2 mt-4 lg:mt-0 text-xs lg:text-sm px-2 max-[321px]:px-0">
         <button
           onClick={() => handleFilterClick("All")}
           className={`flex items-center justify-center gap-x-1 px-4 py-2 max-[376px]:px-2 max-[375px]:py-1 rounded ${

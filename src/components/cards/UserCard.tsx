@@ -1,14 +1,29 @@
-import arrowIcon from "../../assets/icons/arrow-side.svg";
+import { useNavigate } from "react-router-dom";
 
 import type { User } from "../../seeders/users";
+import arrowIcon from "../../assets/icons/arrow-side.svg";
 
-const UserCard: React.FC<User> = ({
+type CardType = {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  status: "Verified" | "Pending" | "Incomplete";
+  imageUrl: string;
+  isIndividual: boolean;
+};
+
+const UserCard = ({
+  id,
   name,
   phone,
   email,
   status,
   imageUrl = "https://picsum.photos/40/40?random=1", // Updated to use picsum
-}) => {
+  isIndividual,
+}: CardType) => {
+  const navigate = useNavigate();
+
   const getStatusStyle = () => {
     switch (status) {
       case "Verified":
@@ -22,8 +37,16 @@ const UserCard: React.FC<User> = ({
     }
   };
 
+  const handleOnClick = () => {
+    if (isIndividual) navigate(`/users/individual/${id}`);
+    else navigate(`/users/corporate/${id}`);
+  };
+
   return (
-    <div className="flex items-center justify-between bg-[var(--bg)] text-white px-2 max-[376px]:px-0 py-3 w-full border-b border-[var(--border)] cursor-pointer">
+    <div
+      className="flex items-center justify-between bg-[var(--bg)] text-white px-2 max-[376px]:px-0 py-3 w-full border-b border-[var(--border)] cursor-pointer"
+      onClick={handleOnClick}
+    >
       <div className="flex items-center justify-start w-full">
         <img
           src={imageUrl}

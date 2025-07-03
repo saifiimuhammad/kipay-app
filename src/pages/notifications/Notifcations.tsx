@@ -1,18 +1,14 @@
-import { useState, type JSX } from "react";
-import {
-  Bell,
-  UserCircle,
-  CalendarCheck,
-  FileText,
-  PlusIcon,
-} from "lucide-react";
+import { PlusIcon } from "lucide-react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import transactionIcon from "../assets/icons/transactions.svg";
-// import documentIcon from "../assets/icons/document.svg";
-// import userIcon from "../assets/icons/user.svg";
-// import scheduleIcon from "../assets/icons/schedule.svg";
-// import bellIcon from "../assets/icons/bell.svg";
+import menuDotIcon from "../../assets/icons/menu-dot.svg";
+
+import bellIcon from "../../assets/icons/bell.svg";
+import documentIcon from "../../assets/icons/documents.svg";
+import scheduleIcon from "../../assets/icons/schedule.svg";
+import transactionIcon from "../../assets/icons/transactions.svg";
+import userIcon from "../../assets/icons/user.svg";
 
 const ArrowIcon = () => (
   <svg
@@ -27,66 +23,81 @@ const ArrowIcon = () => (
 );
 
 type Notification = {
+  id: string;
   title: string;
   description: string;
   time: string;
-  icon: JSX.Element;
   date: string;
+  type: string;
 };
 
 const userAlerts: Notification[] = [
   {
+    id: "3df234f3",
     title: "New transaction awaiting approval",
     description: "A user has initiated a payment. Tap to approve or reject",
     time: "1h",
-    icon: <ArrowIcon />,
     date: "Today",
+    type: "transaction",
   },
   {
+    id: "3dfaddf3",
     title: "Justification Uploaded for Payment",
     description:
       "User submitted transaction documentation. OCR verification required.",
     time: "3h",
-    icon: <FileText size={18} />,
     date: "Today",
+    type: "verification",
   },
   {
+    id: "786df3",
     title: "Counterparty Added by User",
     description:
       "A user has added a new counterparty. Review details and approve if valid.",
     time: "1h",
-    icon: <UserCircle size={18} />,
     date: "01 April, 2025",
+    type: "user",
   },
   {
+    id: "19fdf3",
     title: "Schedule Payment Submitted",
     description:
       "User submitted a schedule payment request. Awaiting admin confirmation.",
     time: "3h",
-    icon: <CalendarCheck size={18} />,
     date: "01 April, 2025",
+    type: "submission",
   },
 ];
 
 const adminBroadcasts: Notification[] = [
   {
+    id: "3dfdf3",
     title: "System Maintenance Notice",
     description: "The system will be under maintenance from 2 AM to 4 AM.",
     time: "2h",
-    icon: <Bell size={18} />,
     date: "Today",
+    type: "system",
   },
   {
+    id: "3d3f3",
     title: "New Policy Update",
     description:
       "Please review the updated transaction policy before proceeding.",
     time: "5h",
-    icon: <FileText size={18} />,
     date: "01 April, 2025",
+    type: "policy",
   },
 ];
 
-const Notifcations = () => {
+const Notifcations = ({
+  isDialogOpen,
+  setIsDialogOpen,
+  setId,
+}: {
+  isDialogOpen: boolean;
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>;
+  setId: Dispatch<SetStateAction<string>>;
+}) => {
   const [isUserAlerts, setIsUserAlerts] = useState(true);
 
   const navigate = useNavigate();
@@ -107,10 +118,31 @@ const Notifcations = () => {
     navigate("/notifications/add");
   };
 
+  const handleOnClick = (id: string) => {
+    setIsDialogOpen(true);
+    setId(id);
+    console.log(id);
+  };
+
+  const selectIconType = (type: string) => {
+    switch (type) {
+      case "transaction":
+        return <img src={transactionIcon} alt="transaction_icon" />;
+      case "verification":
+        return <img src={documentIcon} alt="document_icon" />;
+      case "user":
+        return <img src={userIcon} alt="user_icon" />;
+      case "submission":
+        return <img src={scheduleIcon} alt="schedule_icon" />;
+      default:
+        return <img src={bellIcon} alt="bell_icon" />;
+    }
+  };
+
   return (
-    <div className="relative bg-[var(--bg)] w-full min-h-screen px-4 lg:px-32">
+    <div className="relative bg-[var(--bg)] w-full min-h-screen px-4 lg:px-102">
       {/* Add Button */}
-      {!isUserAlerts && (
+      {!isUserAlerts && !isDialogOpen && (
         <button
           className="add-btn fixed bottom-14 right-6 lg:right-10 p-4 bg-[var(--accent)] text-white font-bold rounded-full z-50 cursor-pointer"
           onClick={handleNavigate}
@@ -148,21 +180,35 @@ const Notifcations = () => {
             <p className="text-xs font-medium text-[var(--text-3)] mb-2">
               {date}
             </p>
+
             <div className="space-y-3">
               {items.map((item) => (
                 <div
-                  key={item.title}
+                  key={item.id}
                   className="border border-[var(--border)]/50 rounded-lg p-4 py-5 flex items-center gap-3"
                 >
                   <div className="bg-[var(--accent)] text-[var(--text)] rounded-full p-2">
-                    {item.icon}
+                    {!isUserAlerts ? (
+                      <img src={bellIcon} alt="bell_icon" />
+                    ) : (
+                      selectIconType(item.type)
+                    )}
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-center">
                       <p className="text-sm font-semibold">{item.title}</p>
-                      <span className="text-xs text-[var(--text-4)]">
-                        {item.time}
-                      </span>
+                      {isUserAlerts ? (
+                        <span className="text-xs text-[var(--text-4)]">
+                          {item.time}
+                        </span>
+                      ) : (
+                        <img
+                          src={menuDotIcon}
+                          alt="menu_icon"
+                          className="cursor-pointer"
+                          onClick={() => handleOnClick(item.id)}
+                        />
+                      )}
                     </div>
                     <p className="text-xs text-[var(--text-4)] w-[90%] pt-[5px]">
                       {item.description}

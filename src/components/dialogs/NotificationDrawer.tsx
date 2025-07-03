@@ -2,29 +2,14 @@ import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-interface BottomDialogProps {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  id: string;
-}
-
-// You hav eto fetch the data by id receiving as a Prop and remove this dummy data
-
-const details = [
-  { label: "Transaction ID", value: "HE43FEF6E" },
-  { label: "Initiated by", value: "Grace Alex" },
-  { label: "Date", value: "23/04/25" },
-  { label: "Amount", value: "$40,000" },
-  { label: "Beneficiary Details", value: "Business Trans" },
-  { label: "Approval status", value: "Pending" },
-  { label: "Pending Approvers", value: "Joint account" },
-  { label: "Shipment status", value: "In transit" },
-];
-
-const BottomDialog: React.FC<BottomDialogProps> = ({
+const NotificationDrawer = ({
   isOpen,
   setIsOpen,
   id,
+}: {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  id: string;
 }) => {
   const startY = useRef<number | null>(null);
   const startTime = useRef<number | null>(null);
@@ -62,7 +47,6 @@ const BottomDialog: React.FC<BottomDialogProps> = ({
     if (velocity > 0.5 || deltaY > 120) {
       setIsOpen(false); // drag down
     } else if (velocity < -0.5 || deltaY < -100) {
-      navigate(`/pending-validation/${id}`); // drag up
       setIsOpen(false);
     }
 
@@ -91,10 +75,8 @@ const BottomDialog: React.FC<BottomDialogProps> = ({
     window.removeEventListener("mouseup", handleMouseUp);
   };
 
-  const handleOnClick = (id: string) => {
-    navigate(`/pending-validation/${id}`);
-    setIsOpen(false);
-  };
+  const handleOnDelete = () => {};
+  const handleOnEdit = () => {};
 
   useEffect(() => {
     if (!isOpen) setDeltaY(0);
@@ -113,7 +95,7 @@ const BottomDialog: React.FC<BottomDialogProps> = ({
         initial={{ y: "100%" }}
         animate={{ y: isOpen ? deltaY : "100%" }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`fixed bottom-0 left-0 right-0 bg-[#2C2C2C] text-white rounded-t-2xl z-50 px-6 lg:px-32 py-4 touch-none ${
+        className={`fixed bottom-0 left-0 right-0 bg-[#2C2C2C] text-white rounded-t-2xl z-50 px-4 lg:px-102 py-4 touch-none ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         } lg:cursor-default`}
         onTouchStart={handleTouchStart}
@@ -122,30 +104,28 @@ const BottomDialog: React.FC<BottomDialogProps> = ({
         onMouseDown={handleMouseDown}
         style={{ touchAction: "none" }}
       >
-        <div className="w-12 h-1.5 bg-white/60 rounded-full mx-auto mb-4 lg:hidden" />
-        <div className="w-full grid place-items-center mb-4">
-          <button
-            className="text-[var(--accent)] cursor-pointer hidden lg:block"
-            onClick={() => handleOnClick(id)}
-          >
-            See full details
-          </button>
+        <div className="w-12 h-1.5 bg-white/60 rounded-full mx-auto mb-4" />
+
+        <div className="border-b-2 border-[var(--border)]">
+          <h2 className="text-lg font-semibold mb-4">Edit notification</h2>
         </div>
-        <h2 className="text-lg font-semibold mb-4">Validation details</h2>
-        <div className="text-sm text-white/80 space-y-3">
-          {details.map((item) => (
-            <div
-              key={item.label}
-              className="flex justify-between border-b border-white/10 pb-1"
-            >
-              <span>{item.label}</span>
-              <span className="text-white">{item.value}</span>
-            </div>
-          ))}
+        <div className="text-sm text-white/80 flex flex-col items-start justify-center gap-y-5 py-6">
+          <button
+            className="text-sm text-[var(--text)] font-medium cursor-pointer"
+            onClick={handleOnDelete}
+          >
+            Delete notification
+          </button>
+          <button
+            className="text-sm text-[var(--text)] font-medium cursor-pointer"
+            onClick={handleOnEdit}
+          >
+            Edit notification
+          </button>
         </div>
       </motion.div>
     </>
   );
 };
 
-export default BottomDialog;
+export default NotificationDrawer;
