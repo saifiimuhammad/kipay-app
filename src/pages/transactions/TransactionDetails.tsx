@@ -9,6 +9,7 @@ const TransactionDetails = () => {
   const navigate = useNavigate();
 
   const fetchTransactionDetails = (id: string) => {
+    // You hav eto fetch the data by id receiving as params
     console.log(id);
   };
 

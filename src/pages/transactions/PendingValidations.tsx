@@ -1,9 +1,6 @@
-import type { Dispatch, SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import MenuDotIcon from "../../assets/icons/menu-dot.svg";
-import {
-  pendingValidations,
-  type Transaction,
-} from "../../seeders/transactions";
+import { pendingValidations } from "../../seeders/transactions";
 
 const PendingValidations = ({
   isDialogOpen,
@@ -14,10 +11,14 @@ const PendingValidations = ({
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>;
   setId: Dispatch<SetStateAction<string>>;
 }) => {
+  useEffect(() => {
+    console.log(isDialogOpen);
+  });
+
   return (
-    <div className="w-full bg-[var(--bg)] p-4 lg:px-32">
+    <div className="w-full bg-[var(--bg)] p-4 lg:px-102">
       {/* Scrollable Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-[600px] overflow-y-auto pr-2 scrollbar-hidden">
+      <div className="flex flex-col gap-4 h-[600px] overflow-y-auto pr-2 scrollbar-hidden">
         {pendingValidations.map((val) => (
           <Card
             key={val.id}

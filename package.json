@@ -12,12 +12,15 @@
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "@tailwindcss/vite": "^4.1.10",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "framer-motion": "^12.19.2",
     "lucide-react": "^0.523.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.58.1",
     "react-router-dom": "^7.6.2",
+    "react-select": "^5.10.1",
     "recharts": "^3.0.0",
     "tailwindcss": "^4.1.10",
     "zod": "^3.25.67"
