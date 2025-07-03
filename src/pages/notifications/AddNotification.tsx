@@ -39,6 +39,7 @@ const AddNotification = () => {
   });
 
   const onSubmit = (data: FormValues) => {
+    console.log(date, hour, minute, meridiem);
     console.log({ ...data, isActive: toggle });
   };
 

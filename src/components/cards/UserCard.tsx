@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import type { User } from "../../seeders/users";
 import arrowIcon from "../../assets/icons/arrow-side.svg";
 
 type CardType = {

@@ -146,11 +146,7 @@ const AppRoutes = ({
             path="scheduled-payments"
             element={
               <ProtectRoute user={user} redirect="/login">
-                <ScheduledPayments
-                  isDialogOpen={isDialogOpen}
-                  setIsDialogOpen={setIsDialogOpen}
-                  setId={setTransactionId}
-                />
+                <ScheduledPayments />
               </ProtectRoute>
             }
           />

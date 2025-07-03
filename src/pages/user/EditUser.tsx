@@ -28,8 +28,8 @@ const EditUser = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = () => {
+    console.log("data");
   };
 
   return (

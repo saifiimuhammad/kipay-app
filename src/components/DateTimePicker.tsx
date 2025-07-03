@@ -1,4 +1,4 @@
-import React, { useState, type Dispatch, type SetStateAction } from "react";
+import { type Dispatch, type SetStateAction } from "react";
 import ScrollPicker from "./ScrollPicker";
 import dayjs from "dayjs";
 

@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const NotificationDrawer = ({
@@ -16,7 +15,6 @@ const NotificationDrawer = ({
   const [deltaY, setDeltaY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Detect mobile
