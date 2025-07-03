@@ -19,6 +19,7 @@ import menuDotIcon from "../../assets/icons/menu-dot.svg";
 import docImage from "../../assets/images/doc.svg";
 
 type UserType = {
+  id: string;
   name: string;
   role: string;
   email: string;
@@ -28,6 +29,7 @@ type UserType = {
 
 const userList: UserType[] = [
   {
+    id: "4fdf",
     name: "Wade Warren",
     role: "Admin",
     email: "jonet@gmail.com",
@@ -35,6 +37,7 @@ const userList: UserType[] = [
     imageUrl: "https://picsum.photos/seed/1/40",
   },
   {
+    id: "43df",
     name: "Wade Warren",
     role: "Approver",
     email: "jonet@gmail.com",
@@ -42,6 +45,7 @@ const userList: UserType[] = [
     imageUrl: "https://picsum.photos/seed/1/40",
   },
   {
+    id: "4f7f",
     name: "Wade Warren",
     role: "Initiator",
     email: "jonet@gmail.com",
@@ -181,13 +185,15 @@ const EditCorporate = () => {
             <div className="user-list">
               {userList.map((val) => (
                 <Card
-                  key={val.email}
+                  key={val.id}
+                  id={val.id}
                   name={val.name}
                   email={val.email}
                   status={val.status}
                   role={val.role}
                   imageUrl={val.imageUrl}
                   setIsDialogOpen={setIsDialogOpen}
+                  setUserId={setUserId}
                 />
               ))}
             </div>
@@ -205,24 +211,29 @@ const EditCorporate = () => {
 };
 
 type CardType = {
+  id: string;
   name: string;
   role: string;
   email: string;
   status: string;
   imageUrl: string;
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>;
+  setUserId: Dispatch<SetStateAction<string>>;
 };
 
 const Card = ({
+  id,
   name,
   email,
   role,
   status,
   imageUrl,
   setIsDialogOpen,
+  setUserId,
 }: CardType) => {
   const handleOnClick = () => {
     setIsDialogOpen(true);
+    setUserId(id);
   };
 
   return (
@@ -376,7 +387,7 @@ const Drawer = ({
 
   const handleOnDelete = () => {};
   const handleOnEdit = () => {
-    navigate("/users/edit");
+    navigate(`/users/${id}/edit`);
   };
   const handleOnSuspend = () => {};
 

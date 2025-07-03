@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormField from "../components/FormField";
 import { Mail, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -14,6 +15,8 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -24,6 +27,8 @@ const Login = () => {
 
   const onSubmit = (data: LoginFormData) => {
     console.log("Login data:", data);
+    localStorage.setItem("user", "true");
+    navigate("/");
     // Call your login API here
   };
 
@@ -65,7 +70,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="bg-[var(--accent)] text-[var(--text)] text-lg font-semibold w-full py-4 rounded-full"
+            className="bg-[var(--accent)] text-[var(--text)] text-lg font-semibold w-full py-4 rounded-full cursor-pointer"
           >
             Sign in
           </button>
@@ -74,7 +79,10 @@ const Login = () => {
       <div className="bottom w-full flex items-center justify-center flex-col gap-y-2 pb-8">
         <h3 className="login-subtitle text-lg text-[var(--text-3)]">
           Don't have an account?{" "}
-          <a href="/register" className="text-[var(--text)] font-semibold">
+          <a
+            href="/register"
+            className="text-[var(--text)] font-semibold cursor-pointer"
+          >
             Sign in
           </a>
         </h3>

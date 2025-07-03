@@ -1,5 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import { Headphones } from "lucide-react";
 
 import DashboardIcon from "../assets/icons/dashboard-outlined.svg";
 import DashboardFilledIcon from "../assets/icons/dashboard-filled.svg";
@@ -24,6 +25,7 @@ const Sidebar = ({
   const [openSubnav, setOpenSubnav] = useState<string | null>(null);
   const location = useLocation();
   const pathname = location.pathname;
+  const navigate = useNavigate();
 
   const toggleSubnav = (title: string) => {
     setOpenSubnav(openSubnav === title ? null : title);
@@ -31,6 +33,15 @@ const Sidebar = ({
 
   const handleSidebarClose = () => {
     setIsSidebarOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
+  const handleSupport = () => {
+    navigate("/support");
   };
 
   return (
@@ -115,7 +126,18 @@ const Sidebar = ({
               ]}
             />
             <li className="nav-item">
-              <button className="nav-link text-sm lg:text-lg text-[var(--error)] flex items-center justify-center gap-x-2 cursor-pointer">
+              <button
+                className="nav-link text-sm lg:text-lg text-[var(--subtext)] flex items-center justify-center gap-x-2 cursor-pointer"
+                onClick={handleSupport}
+              >
+                <Headphones size={26} /> Support
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className="nav-link text-sm lg:text-lg text-[var(--error)] flex items-center justify-center gap-x-2 cursor-pointer"
+                onClick={handleLogout}
+              >
                 <img src={LogoutIcon} className="lg:w-7" /> Logout
               </button>
             </li>

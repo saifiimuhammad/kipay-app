@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import exportIcon from "../assets/icons/export.svg";
 import historyIcon from "../assets/icons/history.svg";
+import bellIcon from "../assets/icons/bell.svg";
 
 const Navbar = ({
   setIsSidebarOpen,
@@ -89,7 +90,18 @@ const Navbar = ({
       <h2 className="nav-title lg:text-xl text-md max-[321px]:text-sm font-semibold text-[var(--text)] col-span-2 w-full text-center">
         {setNavTitle()}
       </h2>
-      <div className="col-span-1 flex justify-end w-full pr-1">{setIcon()}</div>
+      <div className="col-span-1 flex justify-end w-full pr-1 gap-4 lg:gap-8">
+        {location.pathname !== "/notifications" && (
+          <button
+            onClick={() => navigate("/notifications")}
+            className="cursor-pointer"
+          >
+            <img src={bellIcon} alt="bell_icon" className="w-full h-full" />
+          </button>
+        )}
+
+        {setIcon()}
+      </div>
     </div>
   );
 };

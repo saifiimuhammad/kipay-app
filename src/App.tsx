@@ -28,6 +28,7 @@ import NotificationDrawer from "./components/dialogs/NotificationDrawer";
 import EditUser from "./pages/user/EditUser";
 import EditCorporate from "./pages/user/EditCorporate";
 import CorporateUserEdit from "./pages/user/CorporateUserEdit";
+import ProtectRoute from "./components/auth/ProtectedRoute";
 
 const Login = lazy(() => import("./pages/Login"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -60,6 +61,8 @@ const AppRoutes = ({
   transactionId: string;
   setTransactionId: Dispatch<SetStateAction<string>>;
 }) => {
+  const user = localStorage.getItem("user") === "true";
+
   const location = useLocation();
   const hideLayout =
     location.pathname === "/login" ||
@@ -70,7 +73,8 @@ const AppRoutes = ({
     location.pathname === "/transactions/scheduled-payments/add" ||
     location.pathname === "/edit" ||
     /^\/users\/individual\/[^/]+\/supporting-docs$/.test(location.pathname) ||
-    /^\/users\/corporate\/[^/]+\/supporting-docs$/.test(location.pathname);
+    /^\/users\/corporate\/[^/]+\/supporting-docs$/.test(location.pathname) ||
+    /^\/users\/[^/]+\/edit$/.test(location.pathname);
 
   return (
     <>
@@ -97,71 +101,178 @@ const AppRoutes = ({
       )}
 
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/users" element={<UserManagement />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <Dashboard />
+            </ProtectRoute>
+          }
+        />
+
+        <Route
+          path="/users"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <UserManagement />
+            </ProtectRoute>
+          }
+        />
+
         <Route path="/transactions">
-          <Route path="all" element={<AllTransactions />} />
+          <Route
+            path="all"
+            element={
+              <ProtectRoute user={user} redirect="/login">
+                <AllTransactions />
+              </ProtectRoute>
+            }
+          />
           <Route
             path="pending-validation"
             element={
-              <PendingValidations
-                isDialogOpen={isDialogOpen}
-                setIsDialogOpen={setIsDialogOpen}
-                setId={setTransactionId}
-              />
+              <ProtectRoute user={user} redirect="/login">
+                <PendingValidations
+                  isDialogOpen={isDialogOpen}
+                  setIsDialogOpen={setIsDialogOpen}
+                  setId={setTransactionId}
+                />
+              </ProtectRoute>
             }
           />
           <Route
             path="scheduled-payments"
             element={
-              <ScheduledPayments
+              <ProtectRoute user={user} redirect="/login">
+                <ScheduledPayments
+                  isDialogOpen={isDialogOpen}
+                  setIsDialogOpen={setIsDialogOpen}
+                  setId={setTransactionId}
+                />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="counterparty-ledger"
+            element={
+              <ProtectRoute user={user} redirect="/login">
+                <CounterpartyLedger />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="pending-validation/validation-history"
+            element={
+              <ProtectRoute user={user} redirect="/login">
+                <ValidationHistory />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="scheduled-payments/add"
+            element={
+              <ProtectRoute user={user} redirect="/login">
+                <AddSchedulePayment />
+              </ProtectRoute>
+            }
+          />
+        </Route>
+
+        {/* Other protected routes */}
+        <Route
+          path="pending-validation/:id"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <TransactionDetails />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="pending-validation/:id/supporting-docs"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <SupportingDocs />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/users/individual/:id/supporting-docs"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <SupportingDocs />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/users/corporate/:id/supporting-docs"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <SupportingDocs />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/users/individual/:id"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <EditUser />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/users/corporate/:id"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <EditCorporate />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/users/:id/edit"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <CorporateUserEdit />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/edit"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <EditCounterparty />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <Notifcations
                 isDialogOpen={isDialogOpen}
                 setIsDialogOpen={setIsDialogOpen}
                 setId={setTransactionId}
               />
-            }
-          />
-          <Route path="counterparty-ledger" element={<CounterpartyLedger />} />
-
-          <Route
-            path="pending-validation/validation-history"
-            element={<ValidationHistory />}
-          />
-          <Route
-            path="scheduled-payments/add"
-            element={<AddSchedulePayment />}
-          />
-        </Route>
-        <Route path="pending-validation/:id" element={<TransactionDetails />} />
-        <Route
-          path="pending-validation/:id/supporting-docs"
-          element={<SupportingDocs />}
-        />
-        <Route
-          path="/users/individual/:id/supporting-docs"
-          element={<SupportingDocs />}
-        />
-        <Route
-          path="/users/corporate/:id/supporting-docs"
-          element={<SupportingDocs />}
-        />
-        <Route path="/users/individual/:id" element={<EditUser />} />
-        <Route path="/users/corporate/:id" element={<EditCorporate />} />
-        <Route path="/users/edit" element={<CorporateUserEdit />} />
-        <Route path="/edit" element={<EditCounterparty />} />
-        <Route
-          path="/notifications"
-          element={
-            <Notifcations
-              isDialogOpen={isDialogOpen}
-              setIsDialogOpen={setIsDialogOpen}
-              setId={setTransactionId}
-            />
+            </ProtectRoute>
           }
         />
-        <Route path="/notifications/add" element={<AddNotification />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/notifications/add"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <AddNotification />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/support"
+          element={
+            <ProtectRoute user={user} redirect="/login">
+              <Support />
+            </ProtectRoute>
+          }
+        />
       </Routes>
     </>
   );
